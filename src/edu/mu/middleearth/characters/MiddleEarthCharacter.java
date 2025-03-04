@@ -11,6 +11,11 @@ public abstract class MiddleEarthCharacter {
 		this.power = power;
 	}
 	
+	/*
+	 * Attack function takes a MiddleEarthCharacter and subtracts from the health depending on how strong the sustained attack was
+	 * Returns a boolean, true if attack was successful, false if attack did no damage.
+	 * Certain MiddleEarthCharacters will have races in which they have normal effectiveness, increased effectiveness, or no effect whatsoever
+	 */
 	public abstract boolean attack(MiddleEarthCharacter target);
 	
 	public abstract String getRace();
