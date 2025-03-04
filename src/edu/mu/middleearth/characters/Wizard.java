@@ -28,7 +28,6 @@ public class Wizard extends MiddleEarthCharacter {
 			System.out.println(this.getName() + " hits a critical " + target.getName() + " with a Rebar club for " + criticalStrike + ".");
 		}
 		
-		//target.setHealth(targetHealth);
 		return true;
 	}
 
