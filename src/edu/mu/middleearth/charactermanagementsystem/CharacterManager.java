@@ -14,15 +14,16 @@ public class CharacterManager {
 			characters = new MiddleEarthCharacter[size];
 			characters[index] = c;
 			index++;
-			size++;
+			//size++;
 			return true;
 		}
+		
 		MiddleEarthCharacter[] arrayX2;
-		if(size - 1 == index) {
+		if(size - 1 <= index) {
 			size *= 2;
 			arrayX2 = new MiddleEarthCharacter[size];
 			
-			for(int i = 0; i < (index + 1); i++) {
+			for(int i = 0; i < (index); i++) {
 				arrayX2[i] = characters[i];
 			}
 			index++;
@@ -37,10 +38,13 @@ public class CharacterManager {
 	
 	private void displayAllCharacters() {
 		if(characters != null) {
-			for(int i = 0; i < (index + 1); i++) {
-				characters[i].displayInfo();
+			if(size == 1) {
+				characters[0].displayInfo();
+			} else {
+				for(int i = 0; i < index; i++) {
+					characters[i].displayInfo();
+				}
 			}
 		}
 	}
-	
 }
