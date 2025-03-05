@@ -1,11 +1,12 @@
 package edu.mu.middleearth.game;
 
+import edu.mu.middleearth.charactermanagementsystem.CharacterManager;
+import edu.mu.middleearth.charactermanagementsystem.MiddleEarthCouncil;
 import edu.mu.middleearth.characters.*;
 
 public class MiddleEarthAppTest {
 
-	
-	public static void main(String[] args) {
+	public void runTest() {
 		// *********** Testing Characters ************
 		double HP = 100.00;
 		double attackPower = 50.00;
@@ -128,6 +129,18 @@ public class MiddleEarthAppTest {
 		orc1.setHealth(HP);
 		wizard1.setHealth(HP);
 		System.out.println();
+		
+		System.out.println("******************* Testing Dynamic Array Sizing *********************");
+		MiddleEarthCouncil council = MiddleEarthCouncil.getInstance();
+		CharacterManager manager = council.getCharacterManager();
+		
+		//*********** Testing Dynamic Array Sizing ********
+		manager.addCharacter(dwarf1);
+		manager.addCharacter(elf1);
+		manager.addCharacter(human1);
+		manager.addCharacter(orc1);
+		manager.addCharacter(wizard1);
+		manager.displayAllCharacters();
+		
 	}
-
 }
