@@ -2,10 +2,16 @@ package edu.mu.middleearth.characters;
 
 public class Elf extends MiddleEarthCharacter{
 
+	/**
+     * {@inheritDoc}
+     */
 	public Elf(String name, Double health, Double power) {
 		super(name, health, power);
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public boolean attack(MiddleEarthCharacter target) {
 		double attackPower = this.getPower();
@@ -13,7 +19,6 @@ public class Elf extends MiddleEarthCharacter{
 		
 		String targetRace = target.getRace();
 		String attackerRace = this.getRace();
-		
 		
 		if(target instanceof Dwarf || target instanceof Elf) {
 			System.out.println("Attack pitiful, zero damage dealt. " + attackerRace + " race is ineffective against the " + targetRace + " race.");
@@ -29,7 +34,10 @@ public class Elf extends MiddleEarthCharacter{
 		target.setHealth(targetHealth);
 		return true;
 	}
-
+	
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public String getRace() {
 		return "Elf";

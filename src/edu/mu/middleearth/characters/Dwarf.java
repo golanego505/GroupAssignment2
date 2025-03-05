@@ -2,10 +2,16 @@ package edu.mu.middleearth.characters;
 
 public class Dwarf extends MiddleEarthCharacter{
 
+	/**
+     * {@inheritDoc}
+     */
 	public Dwarf(String name, Double health, Double power) {
 		super(name, health, power);
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public boolean attack(MiddleEarthCharacter target) {
 		double attackPower = this.getPower();
@@ -29,6 +35,9 @@ public class Dwarf extends MiddleEarthCharacter{
 		return true;
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public String getRace() {
 		return "Dwarf";

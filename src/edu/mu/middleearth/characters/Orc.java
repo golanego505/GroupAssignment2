@@ -2,11 +2,17 @@ package edu.mu.middleearth.characters;
 
 public class Orc extends MiddleEarthCharacter{
 
+	/**
+     * {@inheritDoc}
+     */
 	public Orc(String name, Double health, Double power) {
 		super(name, health, power);
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public boolean attack(MiddleEarthCharacter target) {
 		
@@ -32,6 +38,9 @@ public class Orc extends MiddleEarthCharacter{
 		return true;
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public String getRace() {
 		return "Orc";

@@ -5,6 +5,11 @@ public abstract class MiddleEarthCharacter {
 	private Double health;
 	private Double power;
 	
+	/*
+	 * Constructor method
+	 * Initializes all fields
+	 * Fields are name, health, and power
+	 */
 	public MiddleEarthCharacter(String name, Double health, Double power) {
 		this.name = name;
 		this.health = health;
@@ -18,8 +23,14 @@ public abstract class MiddleEarthCharacter {
 	 */
 	public abstract boolean attack(MiddleEarthCharacter target);
 	
+	/*
+	 * Returns a string containing the race of a character
+	 */
 	public abstract String getRace();
 	
+	/*
+	 * Prints a characters' name and stats to the terminal
+	 */
 	public void displayInfo() {
 		System.out.println(name + "'s" + "stats are: health = " + health + ", power = " + power);
 	}

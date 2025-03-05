@@ -2,10 +2,16 @@ package edu.mu.middleearth.characters;
 
 public class Wizard extends MiddleEarthCharacter {
 
+	/**
+     * {@inheritDoc}
+     */
 	public Wizard(String name, Double health, Double power) {
 		super(name, health, power);
 	}
 	
+	/**
+     * {@inheritDoc}
+     */
 	public boolean attack(MiddleEarthCharacter target) {
 		
 		double criticalStrike = this.getPower()*1.5;
@@ -31,6 +37,9 @@ public class Wizard extends MiddleEarthCharacter {
 		return true;
 	}
 
+	/**
+     * {@inheritDoc}
+     */
 	@Override
 	public String getRace() {
 		return "Wizard";
