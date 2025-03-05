@@ -27,11 +27,11 @@ public class Wizard extends MiddleEarthCharacter {
 		else if(target instanceof Elf || target instanceof Orc) {
 			// Do normal attack damage
 			target.setHealth(target.getHealth() - this.getPower());
-			System.out.println(this.getName() + " smashes " + target.getName() + " with a Rebar club for " + this.getPower() + ".");
+			System.out.println(this.getName() + " spears " + target.getName() + " with an ice spike " + this.getPower() + ".");
 		} else {
 			// Super effective attack 1.5 times damage against Dwarf
 			target.setHealth(target.getHealth() - criticalStrike);
-			System.out.println(this.getName() + " hits a critical " + target.getName() + " with a Rebar club for " + criticalStrike + ".");
+			System.out.println(this.getName() + " hits a critical on " + target.getName() + " with an ice spike " + criticalStrike + ".");
 		}
 		
 		return true;

@@ -33,7 +33,7 @@ public class Orc extends MiddleEarthCharacter{
 		} else {
 			// Super effective attack 1.5 times damage against Humans
 			target.setHealth(target.getHealth() - criticalStrike);
-			System.out.println(this.getName() + " hits a critical " + target.getName() + " with a Rebar club for " + criticalStrike + ".");
+			System.out.println(this.getName() + " hits a critical on " + target.getName() + " with a Rebar club for " + criticalStrike + ".");
 		}
 		return true;
 	}
