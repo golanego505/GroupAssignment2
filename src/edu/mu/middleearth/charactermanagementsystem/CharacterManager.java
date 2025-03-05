@@ -9,7 +9,7 @@ public class CharacterManager {
 	private int index = 0;
 	
 	
-	boolean addCharacter(MiddleEarthCharacter c) {
+	public boolean addCharacter(MiddleEarthCharacter c) {
 		if(index == 0) {
 			characters = new MiddleEarthCharacter[size];
 			characters[index] = c;
@@ -26,17 +26,19 @@ public class CharacterManager {
 			for(int i = 0; i < (index); i++) {
 				arrayX2[i] = characters[i];
 			}
-			index++;
+			
 			arrayX2[index] = c;
+			index++;
 			characters = arrayX2;
 			return true;
 		}
-		index++;
+		
 		characters[index] = c;
+		index++;
 		return true;
 	}
 	
-	private void displayAllCharacters() {
+	public void displayAllCharacters() {
 		if(characters != null) {
 			if(size == 1) {
 				characters[0].displayInfo();
