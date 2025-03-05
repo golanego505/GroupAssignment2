@@ -62,4 +62,49 @@ public class CharacterManager {
 		return null;
 	}
 	
+	public boolean updateCharacter(MiddleEarthCharacter character, String name, double health, double power) {
+		for(int i = 0; i < index; i++) {
+			if(characters[i].equals(character)) {
+				characters[i].setName(name);
+				characters[i].setHealth(health);
+				characters[i].setPower(power);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean deleteCharacter(MiddleEarthCharacter character) {
+		int removedIndex = -1;
+		for(int i = 0; i < index; i++) {
+			if(characters[i].equals(character)) {
+				characters[i] = null;
+				removedIndex = i;
+			}
+		}
+		if(removedIndex == -1) {
+			return false;
+		}
+		index--;
+		
+		MiddleEarthCharacter[] halfArray;
+		
+		if(index <= size/2) {
+			size /=2;
+			halfArray = new MiddleEarthCharacter[size];
+		} else {
+			halfArray = new MiddleEarthCharacter[size];
+		}
+		
+		for(int i = 0; i < (index + 1); i++) {
+			if(i == removedIndex) {
+				continue;
+			}
+			halfArray[i] = characters[i];
+		}
+		characters = halfArray;
+		return true;
+	}
+	
+	
 }
