@@ -8,45 +8,48 @@ public class CharacterManager {
 	private int size = 1;
 	private int index = 0;
 	
-	
+	/*
+	 * Adds Character to Array
+	 * If space runs out, array is doubled in size and character is added.
+	 */
 	public boolean addCharacter(MiddleEarthCharacter c) {
+		if(c == null) {
+			return false;
+		}
+		//Catch case to give character array its first element
 		if(index == 0) {
 			characters = new MiddleEarthCharacter[size];
 			characters[index] = c;
 			index++;
-			//size++;
 			return true;
 		}
-		
-		MiddleEarthCharacter[] arrayX2;
-		if(size - 1 <= index) {
+		//Detects if array is out of space for new Character
+		//Doubles array size
+		//Copies elements to new larger array
+		if(size == index) {
 			size *= 2;
-			arrayX2 = new MiddleEarthCharacter[size];
-			
+			MiddleEarthCharacter[] arrayX2 = new MiddleEarthCharacter[size];
 			for(int i = 0; i < (index); i++) {
 				arrayX2[i] = characters[i];
 			}
-			
 			arrayX2[index] = c;
 			index++;
 			characters = arrayX2;
 			return true;
 		}
-		
+		//Runs if plenty of space for new character in array
+		//Adds character to the next location array
 		characters[index] = c;
 		index++;
 		return true;
 	}
 	
+	/*
+	 * Displays all characters in array using displayInfo()
+	 */
 	public void displayAllCharacters() {
-		if(characters != null) {
-			if(size == 1) {
-				characters[0].displayInfo();
-			} else {
-				for(int i = 0; i < index; i++) {
-					characters[i].displayInfo();
-				}
-			}
-		}
+		for(int i = 0; i < index; i++) {
+			characters[i].displayInfo();
+		}	
 	}
 }
