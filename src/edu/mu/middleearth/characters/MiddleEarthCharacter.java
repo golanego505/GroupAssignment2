@@ -32,7 +32,7 @@ public abstract class MiddleEarthCharacter {
 	 * Prints a characters' name and stats to the terminal
 	 */
 	public void displayInfo() {
-		System.out.println(name + "'s" + "stats are: health = " + health + ", power = " + power);
+		System.out.println(name + "'s " + "stats are: health = " + health + ", power = " + power);
 	}
 
 	public String getName() {
