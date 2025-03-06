@@ -2,16 +2,20 @@ package edu.mu.middleearth.characters;
 
 public class Dwarf extends MiddleEarthCharacter{
 
-	/*
+	/**
 	 * Constructor method
 	 * Initializes all fields
 	 * Fields are name, health, and power
+	 * 
+	 * @param name Dwarf name
+	 * @param health Dwarf health
+	 * @param power Dwarf attack damage
 	 */
 	public Dwarf(String name, Double health, Double power) {
 		super(name, health, power);
 	}
 
-	/*
+	/**
 	 * Attack function takes a MiddleEarthCharacter and subtracts from the health depending on how strong the sustained attack was
 	 * Returns a boolean, true if attack was successful, false if attack did no damage.
 	 * Certain MiddleEarthCharacters will have races in which they have normal effectiveness, increased effectiveness, or no effect whatsoever
@@ -50,7 +54,11 @@ public class Dwarf extends MiddleEarthCharacter{
 		return true;
 	}
 
-	
+	/**
+	 * Gets Character Race
+	 * 
+	 * @return returns Dwarf race
+	 */
 	@Override
 	public String getRace() {
 		return "Dwarf";
