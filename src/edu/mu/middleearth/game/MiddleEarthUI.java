@@ -32,13 +32,13 @@ public class MiddleEarthUI {
 			
 			switch (menuChoice) {
 				case 1:
-					manager.addCharacter(this.getCharacter());
+					manager.addCharacter(this.createCharacter());
 					break;
 				case 2:
 					manager.displayAllCharacters();
 					break;
 				case 3:
-					//this.updateCharacter(manager);
+					this.updateCharacter(manager);
 					break;
 				case 4:
 					break;
@@ -93,7 +93,7 @@ public class MiddleEarthUI {
 	 * 
 	 * @return the character object with attributes chosen by the user
 	 */
-	public MiddleEarthCharacter getCharacter() {
+	public void getCharacterAttributes() {
 		// Get character race
 		while (true) {
 			System.out.println("Enter Character Race from list below: ");
@@ -149,7 +149,7 @@ public class MiddleEarthUI {
             	scanner.nextLine();
             }
 		}
-		return this.createCharacter(race, name, HP, attackDamage);
+		//return this.createCharacter(race, name, HP, attackDamage);
 	}
 	
 	/**
@@ -176,7 +176,8 @@ public class MiddleEarthUI {
 	 * @param attackDamage the attack damage of the character
 	 * @return a new MiddleEarthCharacter object
 	 */
-	private MiddleEarthCharacter createCharacter(String race, String name, double HP, double attackDamage) {
+	private MiddleEarthCharacter createCharacter() {
+		this.getCharacterAttributes();
 		race = race.toUpperCase();
 		//String[] validRaces = {"DWARF", "ELF", "HUMAN", "ORC", "WIZARD"};
 		switch (race) {
@@ -195,6 +196,21 @@ public class MiddleEarthUI {
 		}
 	}
 	
+	// Updates character with new attributes
+	private boolean updateCharacter(CharacterManager manager) {
+		while(true) {
+			System.out.print("Enter name of character you want to update: ");
+			name = scanner.nextLine();
+			if(manager.getCharacter(name) == null) {
+				System.out.println("Character not found.");
+				continue;
+			}
+			MiddleEarthCharacter c = manager.getCharacter(name);
+			this.getCharacterAttributes();
+			manager.updateCharacter(c, name, attackDamage, HP);
+			return true;
+		}
+	}	
 	
 	// Displays the Menu used to play the game
 	public void displayMenu() {
