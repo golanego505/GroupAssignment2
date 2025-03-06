@@ -2,17 +2,21 @@ package edu.mu.middleearth.characters;
 
 public class Orc extends MiddleEarthCharacter{
 
-	/*
+	/**
 	 * Constructor method
 	 * Initializes all fields
 	 * Fields are name, health, and power
+	 *
+	 * @param name Name of Orc
+	 * @param health Orc Health
+	 * @param power Orc attack damage
 	 */
 	public Orc(String name, Double health, Double power) {
 		super(name, health, power);
 		
 	}
 
-	/*
+	/**
 	 * Attack function takes a MiddleEarthCharacter and subtracts from the health depending on how strong the sustained attack was
 	 * Returns a boolean, true if attack was successful, false if attack did no damage.
 	 * Certain MiddleEarthCharacters will have races in which they have normal effectiveness, increased effectiveness, or no effect whatsoever
@@ -42,7 +46,7 @@ public class Orc extends MiddleEarthCharacter{
 		} else {
 			// Super effective attack 1.5 times damage against Humans
 			target.setHealth(target.getHealth() - criticalStrike);
-			System.out.println(this.getName() + " hits a critical on " + target.getName() + " with a Rebar club for " + criticalStrike + ".");
+			System.out.println("Attack devistating! " + this.getName() + " hits a critical on " + target.getName() + " with a Rebar club for " + criticalStrike + ".");
 		}
 		if(target.getHealth() <= 0.0) {
 			System.out.println(target.getName() + " was brutally slain!!!");
@@ -53,6 +57,11 @@ public class Orc extends MiddleEarthCharacter{
 	}
 
 	
+	/**
+	 * Gets character race
+	 * 
+	 * @return Character race as a string
+	 */
 	@Override
 	public String getRace() {
 		return "Orc";
