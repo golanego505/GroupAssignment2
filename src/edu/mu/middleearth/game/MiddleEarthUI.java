@@ -114,6 +114,10 @@ public class MiddleEarthUI {
 			try {
 				System.out.print("Enter character HP: ");
 				HP = scanner.nextDouble();
+				if(HP <= 0) {
+					System.out.println("Invalid input. Health cannot be 0 or negative.");
+					continue;
+				}
 				scanner.nextLine();
 				break;
 			}
@@ -127,6 +131,10 @@ public class MiddleEarthUI {
 			try {
                 System.out.print("Enter Character Attack Damage: ");
                 attackDamage = scanner.nextDouble();
+                if(attackDamage < 0) {
+                	System.out.println("Invalid input. Attack damage cannot be negative.");
+                	continue;
+                }
                 scanner.nextLine();
                 break;
             }
