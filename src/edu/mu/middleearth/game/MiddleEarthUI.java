@@ -28,9 +28,11 @@ public class MiddleEarthUI {
 		CharacterManager manager = council.getCharacterManager();
 		int menuChoice;
 		
-		while(true) { 
+		while(true) {
+			System.out.println();
 			this.displayMenu();
 			menuChoice = this.getMenuInput();
+			System.out.println();
 			
 			switch (menuChoice) {
 				case 1:
