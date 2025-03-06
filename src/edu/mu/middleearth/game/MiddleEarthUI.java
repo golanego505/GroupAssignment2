@@ -44,8 +44,8 @@ public class MiddleEarthUI {
 					this.deleteCharacter(manager);
 					break;
 				case 5:
+					this.executeAttack(manager);
 					break;
-					//this.executeAttack(manager);
 				case 6:
 					//Exit
 					System.out.print("Exiting...");
@@ -94,21 +94,6 @@ public class MiddleEarthUI {
 	 * @return the character object with attributes chosen by the user
 	 */
 	public void getCharacterAttributes() {
-		// Get character race
-		while (true) {
-			System.out.println("Enter Character Race from list below: ");
-			for(String validRace : validRaces) {
-				System.out.print(validRace + " ");
-			}
-			System.out.print(": ");
-			race = scanner.nextLine();
-			
-			if(contains(validRaces, race)) {
-				break; // Valid name move to next input
-			}
-			else {
-				System.out.println("Invalid Race selected. Please try again.");			}
-			}
 		
 		// Get character name
 		while (true) {
@@ -119,7 +104,7 @@ public class MiddleEarthUI {
 				break; // Valid name move to next input
 			} 
 			else {
-				System.out.print("Name cannot be blank. Please try again.");
+				System.out.println("Name cannot be blank. Please try again.");
 			}
 		}
 		
@@ -152,6 +137,25 @@ public class MiddleEarthUI {
 		//return this.createCharacter(race, name, HP, attackDamage);
 	}
 	
+	private void getRaceAttribute() {
+		// Get character race
+		while (true) {
+			System.out.println("Enter Character Race from list below: ");
+			for(String validRace : validRaces) {
+				System.out.print(validRace + " ");
+			}
+			System.out.print(": ");
+			race = scanner.nextLine();
+			
+			if(contains(validRaces, race)) {
+				break; // Valid name move to next input
+			}
+			else {
+				System.out.println("Invalid Race selected. Please try again.");			
+			}
+		}
+	}
+	
 	/**
 	 * Checks if the race chosen by the user is contained within validRaces array
 	 * @param arr 
@@ -178,6 +182,7 @@ public class MiddleEarthUI {
 	 */
 	private MiddleEarthCharacter createCharacter() {
 		this.getCharacterAttributes();
+		this.getRaceAttribute();
 		race = race.toUpperCase();
 		//String[] validRaces = {"DWARF", "ELF", "HUMAN", "ORC", "WIZARD"};
 		switch (race) {
@@ -224,6 +229,41 @@ public class MiddleEarthUI {
 			MiddleEarthCharacter c = manager.getCharacter(name);
 			manager.deleteCharacter(c);
 			return true;
+		}
+	}	
+	
+	// Gets two character by name and has the first call attack on the second
+	private void executeAttack(CharacterManager manager) {
+		MiddleEarthCharacter attacker = null;
+		MiddleEarthCharacter victim = null;
+		// Get character attacking
+		while(true) {
+			System.out.print("Enter name of character executing an attack: ");
+			name = scanner.nextLine();
+			if(manager.getCharacter(name) == null) {
+				System.out.println("Character not found. Enter new name.");
+				continue;
+			}
+			attacker = manager.getCharacter(name);
+			break;
+		}
+		
+		// Get character being attacked
+		while(true) {
+			System.out.print("Enter the name of the character you want to attack: ");
+			name = scanner.nextLine();
+			if(manager.getCharacter(name) == null) {
+				System.out.println("Character not found. Enter new name.");
+				continue;
+			}
+			victim = manager.getCharacter(name);
+			break;
+		}
+		attacker.attack(victim);
+		
+		// Character killed remove from array
+		if(victim.getHealth() == 0.0) {
+			manager.deleteCharacter(victim);
 		}
 	}	
 	
