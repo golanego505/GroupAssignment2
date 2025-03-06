@@ -11,11 +11,13 @@ public class MiddleEarthAppTest {
 		double HP = 100.00;
 		double attackPower = 50.00;
 		
-		Dwarf dwarf1 = new Dwarf("Jonas", HP, attackPower);
-		Elf elf1 = new Elf("Kimber", HP, attackPower);
-		Human human1 = new Human("Lane", HP, attackPower);
-		Orc orc1 = new Orc("Craygar", HP, attackPower);
-		Wizard wizard1 = new Wizard("Harley", HP, attackPower);
+		Dwarf dwarf1 = new Dwarf("Dwarf", HP, attackPower);
+		Elf elf1 = new Elf("Elf", HP, attackPower);
+		Human human1 = new Human("Human", HP, attackPower);
+		Orc orc1 = new Orc("Orc", HP, attackPower);
+		Wizard wizard1 = new Wizard("Wizard", HP, attackPower);
+		
+		Wizard wizard2 = new Wizard("Wizard", HP, attackPower);
 		
 		//************ Display Info ******************
 		System.out.println("******************** Display Info ********************");
@@ -135,12 +137,138 @@ public class MiddleEarthAppTest {
 		CharacterManager manager = council.getCharacterManager();
 		
 		//*********** Testing Dynamic Array Sizing ********
+		
+		System.out.println("--------------------------------------------------------");
+		
 		manager.addCharacter(dwarf1);
-		manager.addCharacter(elf1);
-		manager.addCharacter(human1);
-		manager.addCharacter(orc1);
-		manager.addCharacter(wizard1);
+		System.out.println("Adding Dwarf:");
+		System.out.println("Array Size: " + manager.getSize());
 		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.addCharacter(elf1);
+		System.out.println("Adding Elf:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.addCharacter(human1);
+		System.out.println("Adding Human:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.addCharacter(orc1);
+		System.out.println("Adding Orc:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.addCharacter(wizard1);
+		System.out.println("Adding Wizard:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		System.out.println("---------------------Display All------------------------");
+		manager.displayAllCharacters();
+		System.out.println("--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
+		
+		manager.deleteCharacter(dwarf1);
+		System.out.println("Deleting Dwarf:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.deleteCharacter(elf1);
+		System.out.println("Deleting Elf:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.deleteCharacter(human1);
+		System.out.println("Deleting Human:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.deleteCharacter(orc1);
+		System.out.println("Deleting Orc:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.deleteCharacter(wizard1);
+		System.out.println("Deleting wizard:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("------------------Delete From Empty---------------------");
+		System.out.println("---------------------Print Empty------------------------");
+		manager.deleteCharacter(wizard1);
+		System.out.println("Attempting to delete Wizard from empty array:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		System.out.println("--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
+		manager.addCharacter(dwarf1);
+		System.out.println("Adding Dwarf");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.addCharacter(elf1);
+		System.out.println("Adding Elf");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.addCharacter(human1);
+		System.out.println("Adding Human");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		
+		manager.addCharacter(orc1);
+		System.out.println("Adding Orc");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		manager.addCharacter(wizard1);
+		System.out.println("Adding Wizards");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
+		manager.deleteCharacter(wizard2);
+		System.out.println("Trying to delete character not found:");
+		System.out.println("Array Size: " + manager.getSize());
+		manager.displayAllCharacters();
+		System.out.println("--------------------------------------------------------");
+		System.out.println("--------------------------------------------------------");
+		System.out.println("----------------------Display All-----------------------");
+		
+		manager.displayAllCharacters();
+		
+		System.out.println("--------------------------------------------------------");
 		
 	}
 }
