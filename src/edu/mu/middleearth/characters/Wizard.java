@@ -2,16 +2,20 @@ package edu.mu.middleearth.characters;
 
 public class Wizard extends MiddleEarthCharacter {
 
-	/*
+	/**
 	 * Constructor method
 	 * Initializes all fields
 	 * Fields are name, health, and power
+	 *
+	 * @param name Name to assign to Character
+	 * @param health Health to assign to Character
+	 * @param power Attack damage to assign to character
 	 */
 	public Wizard(String name, Double health, Double power) {
 		super(name, health, power);
 	}
 	
-	/*
+	/**
 	 * Attack function takes a MiddleEarthCharacter and subtracts from the health depending on how strong the sustained attack was
 	 * Returns a boolean, true if attack was successful, false if attack did no damage.
 	 * Certain MiddleEarthCharacters will have races in which they have normal effectiveness, increased effectiveness, or no effect whatsoever
@@ -41,7 +45,7 @@ public class Wizard extends MiddleEarthCharacter {
 		} else {
 			// Super effective attack 1.5 times damage against Dwarf
 			target.setHealth(target.getHealth() - criticalStrike);
-			System.out.println(this.getName() + " hits a critical on " + target.getName() + " with an ice spike " + criticalStrike + ".");
+			System.out.println("Attack devistating! " + this.getName() + " hits a critical on " + target.getName() + " with an ice spike " + criticalStrike + ".");
 		}
 		if(target.getHealth() <= 0.0) {
 			System.out.println(target.getName() + " was brutally slain!!!");
@@ -52,6 +56,11 @@ public class Wizard extends MiddleEarthCharacter {
 	}
 
 	
+	/**
+	 * Gets character race
+	 * 
+	 * @return Character race as a string
+	 */
 	@Override
 	public String getRace() {
 		return "Wizard";
