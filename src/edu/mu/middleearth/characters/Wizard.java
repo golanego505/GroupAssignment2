@@ -2,26 +2,36 @@ package edu.mu.middleearth.characters;
 
 public class Wizard extends MiddleEarthCharacter {
 
-	/**
-     * {@inheritDoc}
-     */
+	/*
+	 * Constructor method
+	 * Initializes all fields
+	 * Fields are name, health, and power
+	 */
 	public Wizard(String name, Double health, Double power) {
 		super(name, health, power);
 	}
 	
-	/**
-     * {@inheritDoc}
-     */
+	/*
+	 * Attack function takes a MiddleEarthCharacter and subtracts from the health depending on how strong the sustained attack was
+	 * Returns a boolean, true if attack was successful, false if attack did no damage.
+	 * Certain MiddleEarthCharacters will have races in which they have normal effectiveness, increased effectiveness, or no effect whatsoever
+	 * Wizard deals normal damage against Elves and Orcs
+	 * Wizard deals increased damage against Dwarfs
+	 * Wizard deals no damage against Humans and other Wizards
+	 */
 	public boolean attack(MiddleEarthCharacter target) {
+		if(target == null) {
+			return false;
+		}
 		
 		double criticalStrike = this.getPower()*1.5;
 		
 		if(target instanceof Human) {
-			System.out.println("Attack ineffective against: " + target.getRace());
+			System.out.println("Attack ineffective against: " + target.getRace() + " Zero damage dealt");
 			return false;
 		}
 		else if(target instanceof Wizard) {
-			System.out.println("Attack was against their own kin: " + target.getRace());
+			System.out.println("Attack ineffective, cannot attack your own kin: " + target.getRace() + " Zero damage dealt");
 			return false;
 		}
 		else if(target instanceof Elf || target instanceof Orc) {
@@ -33,13 +43,15 @@ public class Wizard extends MiddleEarthCharacter {
 			target.setHealth(target.getHealth() - criticalStrike);
 			System.out.println(this.getName() + " hits a critical on " + target.getName() + " with an ice spike " + criticalStrike + ".");
 		}
+		if(target.getHealth() <= 0.0) {
+			System.out.println(target.getName() + " was brutally slain!!!");
+			target.setHealth(0.0);
+		}
 		
 		return true;
 	}
 
-	/**
-     * {@inheritDoc}
-     */
+	
 	@Override
 	public String getRace() {
 		return "Wizard";
