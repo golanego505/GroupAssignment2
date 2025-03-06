@@ -41,14 +41,14 @@ public class MiddleEarthUI {
 					this.updateCharacter(manager);
 					break;
 				case 4:
+					this.deleteCharacter(manager);
 					break;
-					//this.deleteCharacter(manager);
 				case 5:
 					break;
 					//this.executeAttack(manager);
 				case 6:
 					//Exit
-					System.out.println("Exiting...");
+					System.out.print("Exiting...");
 					scanner.close();
 					return true;
 			}
@@ -208,6 +208,21 @@ public class MiddleEarthUI {
 			MiddleEarthCharacter c = manager.getCharacter(name);
 			this.getCharacterAttributes();
 			manager.updateCharacter(c, name, attackDamage, HP);
+			return true;
+		}
+	}	
+	
+	// Delete Character from array
+	private boolean deleteCharacter(CharacterManager manager) {
+		while(true) {
+			System.out.print("Enter name of character you want to delete: ");
+			name = scanner.nextLine();
+			if(manager.getCharacter(name) == null) {
+				System.out.println("Character not found. Enter new name.");
+				continue;
+			}
+			MiddleEarthCharacter c = manager.getCharacter(name);
+			manager.deleteCharacter(c);
 			return true;
 		}
 	}	

@@ -5,9 +5,11 @@ public class MiddleEarthApp {
 	public static void main(String[] args) {
 		
 		// *********** Testing Class ************
-		MiddleEarthAppTest testClass = new MiddleEarthAppTest();
+		//MiddleEarthAppTest testClass = new MiddleEarthAppTest();
+		MiddleEarthUI main = new MiddleEarthUI();
 		
-		testClass.runTest();
+		//testClass.runTest(); uncomment to run tests
+		main.runGame();
 
 	}
 
