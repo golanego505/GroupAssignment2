@@ -9,6 +9,7 @@ import edu.mu.middleearth.characters.*;
 
 public class MiddleEarthUI {
 	
+	// Vars to keep track of Character attributes
 	private String race;
 	private String name;
 	private double HP;
@@ -19,6 +20,7 @@ public class MiddleEarthUI {
 	/**
 	 * Runs the menu until exit is selected (6). 
 	 * Calls functions to run each menu option separately based on users choice
+	 * 
 	 * @return true when exit is selected
 	 */
 	public boolean runGame() {
@@ -89,9 +91,8 @@ public class MiddleEarthUI {
 	}
 	
 	/**
-	 * Gets character attributes necessary for character creation from user and validates the inputs.
-	 * 
-	 * @return the character object with attributes chosen by the user
+	 * Modifies global character attributes necessary for character creation. 
+	 * Gets the inputs from the user and validates them.
 	 */
 	public void getCharacterAttributes() {
 		
@@ -134,11 +135,14 @@ public class MiddleEarthUI {
             	scanner.nextLine();
             }
 		}
-		//return this.createCharacter(race, name, HP, attackDamage);
 	}
 	
+	/**
+	 * Modifies the global race attribute.
+	 * Gets the input from the user and validates it.
+	 */
 	private void getRaceAttribute() {
-		// Get character race
+		// Prompt input until valid race chosen.
 		while (true) {
 			System.out.println("Enter Character Race from list below: ");
 			for(String validRace : validRaces) {
@@ -148,7 +152,7 @@ public class MiddleEarthUI {
 			race = scanner.nextLine();
 			
 			if(contains(validRaces, race)) {
-				break; // Valid name move to next input
+				break; // Valid name end loop
 			}
 			else {
 				System.out.println("Invalid Race selected. Please try again.");			
@@ -158,8 +162,10 @@ public class MiddleEarthUI {
 	
 	/**
 	 * Checks if the race chosen by the user is contained within validRaces array
-	 * @param arr 
-	 * @param value
+	 * Note: Race does not have to be case sensitive
+	 * 
+	 * @param arr validRaces array
+	 * @param value Race being passed in
 	 * @return true if value is in arr false if not
 	 */
 	private boolean contains(String[] arr, String value) {
@@ -201,7 +207,14 @@ public class MiddleEarthUI {
 		}
 	}
 	
-	// Updates character with new attributes
+	/**
+	 * Updates a character's attributes in the array using a character's name that is provided by the user.
+	 * Prompts user for name of character until valid name is given.
+	 * Then asks user for the attributes to update the character.
+	 * 
+	 * @param manager The manager of the character array
+	 * @return true for successful update
+	 */
 	private boolean updateCharacter(CharacterManager manager) {
 		while(true) {
 			System.out.print("Enter name of character you want to update: ");
@@ -217,7 +230,13 @@ public class MiddleEarthUI {
 		}
 	}	
 	
-	// Delete Character from array
+	/**
+	 * Deletes a character from the array using a character name that is provided by the user.
+	 * Prompts user for name of character until valid name is given. 
+	 * 
+	 * @param manager The manager of the character array
+	 * @return true for successful deletion
+	 */
 	private boolean deleteCharacter(CharacterManager manager) {
 		while(true) {
 			System.out.print("Enter name of character you want to delete: ");
@@ -232,7 +251,14 @@ public class MiddleEarthUI {
 		}
 	}	
 	
-	// Gets two character by name and has the first call attack on the second
+	/**
+	 * Lets one character attack another character based on name.
+	 * Prompts the user first for name of attacking character until valid name is provided.
+	 * Then prompts user for the name of the victim (character being attacked) until valid name is provided.
+	 * Then executes attack onto victim.
+	 * 
+	 * @param manager The manager of the character array
+	 */
 	private void executeAttack(CharacterManager manager) {
 		MiddleEarthCharacter attacker = null;
 		MiddleEarthCharacter victim = null;
@@ -267,7 +293,9 @@ public class MiddleEarthUI {
 		}
 	}	
 	
-	// Displays the Menu used to play the game
+	/**
+	 * Displays the menu being used for the application
+	 */
 	public void displayMenu() {
 		System.out.println("1. Add a new character.");
 		System.out.println("2. View all characters.");
