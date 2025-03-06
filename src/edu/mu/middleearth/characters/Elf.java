@@ -2,16 +2,20 @@ package edu.mu.middleearth.characters;
 
 public class Elf extends MiddleEarthCharacter{
 
-	/*
+	/**
 	 * Constructor method
 	 * Initializes all fields
 	 * Fields are name, health, and power
+	 * 
+	 * @param name Elf name
+	 * @param health Elf health
+	 * @param power Elf attack damage
 	 */
 	public Elf(String name, Double health, Double power) {
 		super(name, health, power);
 	}
 
-	/*
+	/**
 	 * Attack function takes a MiddleEarthCharacter and subtracts from the health depending on how strong the sustained attack was
 	 * Returns a boolean, true if attack was successful, false if attack did no damage.
 	 * Certain MiddleEarthCharacters will have races in which they have normal effectiveness, increased effectiveness, or no effect whatsoever
@@ -50,7 +54,11 @@ public class Elf extends MiddleEarthCharacter{
 		return true;
 	}
 	
-	
+	/**
+	 * Gets character race
+	 * 
+	 * @return Elf race as string
+	 */
 	@Override
 	public String getRace() {
 		return "Elf";
