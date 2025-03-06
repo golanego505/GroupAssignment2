@@ -1,14 +1,15 @@
 package edu.mu.middleearth.game;
 
 import java.util.InputMismatchException;
-import java.util.Arrays;
 import java.util.Scanner;
 import edu.mu.middleearth.charactermanagementsystem.CharacterManager;
 import edu.mu.middleearth.charactermanagementsystem.MiddleEarthCouncil;
 import edu.mu.middleearth.characters.MiddleEarthCharacter;
+import edu.mu.middleearth.characters.*;
 
 public class MiddleEarthUI {
 	
+	private String race;
 	private String name;
 	private double HP;
 	private double attackDamage;
@@ -31,7 +32,7 @@ public class MiddleEarthUI {
 			
 			switch (menuChoice) {
 				case 1:
-					//this.getCharacter(manager);
+					manager.addCharacter(this.getCharacter());
 					break;
 				case 2:
 					manager.displayAllCharacters();
@@ -86,76 +87,114 @@ public class MiddleEarthUI {
 	}
 	
 	/**
-	 * Gets character attributes necessary for character creation from user and validates the input.
+	 * Gets character attributes necessary for character creation from user and validates the inputs.
 	 * 
 	 * @return the character object with attributes chosen by the user
 	 */
 	public MiddleEarthCharacter getCharacter() {
-		boolean validInput = false;
+		// Get character race
+		while (true) {
+			System.out.println("Enter Character Race from list below: ");
+			for(String validRace : validRaces) {
+				System.out.print(validRace + " ");
+			}
+			System.out.print(": ");
+			race = scanner.nextLine();
+			
+			if(contains(validRaces, race)) {
+				break; // Valid name move to next input
+			}
+			else {
+				System.out.println("Invalid Race selected. Please try again.");			}
+			}
 		
-		while(!validInput) {
+		// Get character name
+		while (true) {
+			System.out.println("Enter Character Name: ");
+			name = scanner.nextLine();
+			
+			if(!name.isBlank()) {
+				break; // Valid name move to next input
+			} 
+			else {
+				System.out.println("Name cannot be blank. Please try again.");
+			}
+		}
+		
+		// Get character HP
+		while (true) {
 			try {
-				//Get character race
-				System.out.println("Enter Character Race from list below: ");
-				for(String race : validRaces) {
-					System.out.print(race + " ");
-				}
-				System.out.print(": ");
-				name = scanner.nextLine();
-				if(!(contains(validRaces, name))) {
-					System.out.println("Invalid Race selected.");
-					continue;
-				}
-				
-				//Get character name
-				System.out.print("Enter Character Name: ");
-				name = scanner.nextLine();
-				if(name.isBlank()) {
-					System.out.println("Name cannot be blank.");
-					continue; 
-				}
-				
-				//Get character HP
 				System.out.print("Enter character HP: ");
 				HP = scanner.nextDouble();
 				scanner.nextLine();
-				
-				//Get character attack damage
-				System.out.println("Enter Character Attack Damage: ");
-				attackDamage = scanner.nextDouble();
-				scanner.nextLine();
-				
-				validInput = true;
-				scanner.close();
+				break;
 			}
 			catch(InputMismatchException e) {
-				System.out.println("Invalid input. Please enter a valid number.");
+				System.out.println("Invalid input. Enter a valid number.");
 				scanner.nextLine();
 			}
 		}
-		return null;
-		//return this.createCharacter();
-		//prompt user to create a character
-		//add using addCharacter from manager
+		// Get character attack damage
+		while (true) {
+			try {
+                System.out.print("Enter Character Attack Damage: ");
+                attackDamage = scanner.nextDouble();
+                scanner.nextLine();
+                break;
+            }
+            catch(InputMismatchException e) {
+            	System.out.println("Invalid input. Enter a valid number.");
+            	scanner.nextLine();
+            }
+		}
+		return this.createCharacter(race, name, HP, attackDamage);
 	}
 	
 	/**
 	 * Checks if the race chosen by the user is contained within validRaces array
-	 * @param arr
+	 * @param arr 
 	 * @param value
 	 * @return true if value is in arr false if not
 	 */
 	private boolean contains(String[] arr, String value) {
-			for(String race : arr) {
-				if(race.equalsIgnoreCase(value)) {
-					return true;
-				}
+		for(String race : arr) {
+			if(race.equalsIgnoreCase(value)) {
+				return true;
 			}
-			return false;
 		}
+		return false;
+	}
 	
-	private MiddleEarthCharacter createCharacter(String Race, String name, double HP, double attackDamage) {
-		//needs implementation
+	/**
+	 * Creates a new MiddleEarthCharacter
+	 * 
+	 * @param race The race of the character
+	 * @param name The name of the character
+	 * @param HP The health points of the character
+	 * @param attackDamage the attack damage of the character
+	 * @return a new MiddleEarthCharacter object
+	 */
+	private MiddleEarthCharacter createCharacter(String race, String name, double HP, double attackDamage) {
+		race = race.toUpperCase();
+		//String[] validRaces = {"DWARF", "ELF", "HUMAN", "ORC", "WIZARD"};
+		switch (race) {
+			case "DWARF":
+				MiddleEarthCharacter c = new Dwarf(name, HP, attackDamage);
+				return c;
+			case "ELF":
+				MiddleEarthCharacter c = new Elf(name, HP, attackDamage);
+				return c;
+			case "HUMAN":
+				MiddleEarthCharacter c = new Human(name, HP, attackDamage);
+				return c;
+			case "ORC":
+				MiddleEarthCharacter c = new Orc(name, HP, attackDamage);
+				return c;
+			case "WIZARD":
+				MiddleEarthCharacter c = new Wizard(name, HP, attackDamage);
+				return c;
+			
+		}
 	}
 	
 	
