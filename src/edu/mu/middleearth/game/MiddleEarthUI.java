@@ -41,12 +41,15 @@ public class MiddleEarthUI {
 					//this.updateCharacter(manager);
 					break;
 				case 4:
+					break;
 					//this.deleteCharacter(manager);
 				case 5:
+					break;
 					//this.executeAttack(manager);
 				case 6:
 					//Exit
 					System.out.println("Exiting...");
+					scanner.close();
 					return true;
 			}
 					
@@ -75,7 +78,6 @@ public class MiddleEarthUI {
 				}
 				
 				validInput = true;
-				scanner.close();
 				return menuChoice;
 			} 
 			catch (InputMismatchException e){
@@ -110,14 +112,14 @@ public class MiddleEarthUI {
 		
 		// Get character name
 		while (true) {
-			System.out.println("Enter Character Name: ");
+			System.out.print("Enter Character Name: ");
 			name = scanner.nextLine();
 			
 			if(!name.isBlank()) {
 				break; // Valid name move to next input
 			} 
 			else {
-				System.out.println("Name cannot be blank. Please try again.");
+				System.out.print("Name cannot be blank. Please try again.");
 			}
 		}
 		
@@ -179,21 +181,17 @@ public class MiddleEarthUI {
 		//String[] validRaces = {"DWARF", "ELF", "HUMAN", "ORC", "WIZARD"};
 		switch (race) {
 			case "DWARF":
-				MiddleEarthCharacter c = new Dwarf(name, HP, attackDamage);
-				return c;
+				return new Dwarf(name, HP, attackDamage);
 			case "ELF":
-				MiddleEarthCharacter c = new Elf(name, HP, attackDamage);
-				return c;
+				return new Elf(name, HP, attackDamage);
 			case "HUMAN":
-				MiddleEarthCharacter c = new Human(name, HP, attackDamage);
-				return c;
+				return new Human(name, HP, attackDamage);
 			case "ORC":
-				MiddleEarthCharacter c = new Orc(name, HP, attackDamage);
-				return c;
+				return new Orc(name, HP, attackDamage);
 			case "WIZARD":
-				MiddleEarthCharacter c = new Wizard(name, HP, attackDamage);
-				return c;
-			
+				return new Wizard(name, HP, attackDamage);
+			default:
+				throw new IllegalArgumentException("Invalid race: " + race);
 		}
 	}
 	
