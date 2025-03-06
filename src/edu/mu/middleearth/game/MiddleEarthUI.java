@@ -3,9 +3,47 @@ package edu.mu.middleearth.game;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import edu.mu.middleearth.charactermanagementsystem.CharacterManager;
+import edu.mu.middleearth.charactermanagementsystem.MiddleEarthCouncil;
 import edu.mu.middleearth.characters.MiddleEarthCharacter;
 
 public class MiddleEarthUI {
+	
+	/**
+	 * Runs the menu until exit is selected (6). 
+	 * Calls functions to run each menu option separately based on users choice
+	 * @return true when exit is selected
+	 */
+	public boolean runGame() {
+		MiddleEarthCouncil council = MiddleEarthCouncil.getInstance();
+		CharacterManager manager = council.getCharacterManager();
+		int menuChoice;
+		
+		while(true) { 
+			this.displayMenu();
+			menuChoice = this.getMenuInput();
+			
+			switch (menuChoice) {
+				case 1:
+					//this.addCharacter(manager);
+					break;
+				case 2:
+					manager.displayAllCharacters();
+					break;
+				case 3:
+					//this.updateCharacter(manager);
+					break;
+				case 4:
+					//this.deleteCharacter(manager);
+				case 5:
+					//this.executeAttack(manager);
+				case 6:
+					//Exit
+					System.out.println("Exiting...");
+					return true;
+			}
+					
+		}
+	}
 	
 	/**
 	 * Gets user input for a menu option.
