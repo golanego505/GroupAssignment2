@@ -1,12 +1,19 @@
 package edu.mu.middleearth.game;
 
 import java.util.InputMismatchException;
+import java.util.Arrays;
 import java.util.Scanner;
 import edu.mu.middleearth.charactermanagementsystem.CharacterManager;
 import edu.mu.middleearth.charactermanagementsystem.MiddleEarthCouncil;
 import edu.mu.middleearth.characters.MiddleEarthCharacter;
 
 public class MiddleEarthUI {
+	
+	private String name;
+	private double HP;
+	private double attackDamage;
+	Scanner scanner = new Scanner(System.in);
+	String[] validRaces = {"DWARF", "ELF", "HUMAN", "ORC", "WIZARD"}; //Contains all available races for addCharacter method
 	
 	/**
 	 * Runs the menu until exit is selected (6). 
@@ -24,7 +31,7 @@ public class MiddleEarthUI {
 			
 			switch (menuChoice) {
 				case 1:
-					//this.addCharacter(manager);
+					//this.getCharacter(manager);
 					break;
 				case 2:
 					manager.displayAllCharacters();
@@ -52,9 +59,7 @@ public class MiddleEarthUI {
 	 * @return the selected menu option (1-6)
 	 */
 	public int getMenuInput() {
-		
 		boolean validInput = false;
-		Scanner scanner = new Scanner(System.in);
 		
 		while(!validInput) {
 			try {
@@ -80,12 +85,79 @@ public class MiddleEarthUI {
 		return 6; // Exit code if something goes wrong
 	}
 	
-
+	/**
+	 * Gets character attributes necessary for character creation from user and validates the input.
+	 * 
+	 * @return the character object with attributes chosen by the user
+	 */
 	public MiddleEarthCharacter getCharacter() {
+		boolean validInput = false;
+		
+		while(!validInput) {
+			try {
+				//Get character race
+				System.out.println("Enter Character Race from list below: ");
+				for(String race : validRaces) {
+					System.out.print(race + " ");
+				}
+				System.out.print(": ");
+				name = scanner.nextLine();
+				if(!(contains(validRaces, name))) {
+					System.out.println("Invalid Race selected.");
+					continue;
+				}
+				
+				//Get character name
+				System.out.print("Enter Character Name: ");
+				name = scanner.nextLine();
+				if(name.isBlank()) {
+					System.out.println("Name cannot be blank.");
+					continue; 
+				}
+				
+				//Get character HP
+				System.out.print("Enter character HP: ");
+				HP = scanner.nextDouble();
+				scanner.nextLine();
+				
+				//Get character attack damage
+				System.out.println("Enter Character Attack Damage: ");
+				attackDamage = scanner.nextDouble();
+				scanner.nextLine();
+				
+				validInput = true;
+				scanner.close();
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Invalid input. Please enter a valid number.");
+				scanner.nextLine();
+			}
+		}
 		return null;
+		//return this.createCharacter();
 		//prompt user to create a character
 		//add using addCharacter from manager
 	}
+	
+	/**
+	 * Checks if the race chosen by the user is contained within validRaces array
+	 * @param arr
+	 * @param value
+	 * @return true if value is in arr false if not
+	 */
+	private boolean contains(String[] arr, String value) {
+			for(String race : arr) {
+				if(race.equalsIgnoreCase(value)) {
+					return true;
+				}
+			}
+			return false;
+		}
+	
+	private MiddleEarthCharacter createCharacter(String Race, String name, double HP, double attackDamage) {
+		//needs implementation
+	}
+	
 	
 	// Displays the Menu used to play the game
 	public void displayMenu() {
