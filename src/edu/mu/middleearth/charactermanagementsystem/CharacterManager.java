@@ -5,9 +5,12 @@ import edu.mu.middleearth.characters.MiddleEarthCharacter;
 public class CharacterManager {
 	private MiddleEarthCharacter[] characters;
 	
-	private int size = 1;
+	private int size = 0;
 	private int index = 0;
 	
+	public int getSize() {
+		return size;
+	}
 	/*
 	 * Adds Character to Array
 	 * If space runs out, array is doubled in size and character is added.
@@ -17,7 +20,8 @@ public class CharacterManager {
 			return false;
 		}
 		//Catch case to give character array its first element
-		if(index == 0) {
+		if(size == 0) {
+			size = 1;
 			characters = new MiddleEarthCharacter[size];
 			characters[index] = c;
 			index++;
@@ -50,6 +54,7 @@ public class CharacterManager {
 	public void displayAllCharacters() {
 		for(int i = 0; i < index; i++) {
 			characters[i].displayInfo();
+			
 		}	
 	}
 	
@@ -78,29 +83,35 @@ public class CharacterManager {
 		int removedIndex = -1;
 		for(int i = 0; i < index; i++) {
 			if(characters[i].equals(character)) {
-				characters[i] = null;
 				removedIndex = i;
 			}
 		}
 		if(removedIndex == -1) {
 			return false;
 		}
+		if(index == 0) {
+			size = 0;
+			return false;
+		}
+		
 		index--;
 		
 		MiddleEarthCharacter[] halfArray;
 		
-		if(index <= size/2) {
-			size /=2;
+		if(index <= (size/2)) {
+			size /= 2;
 			halfArray = new MiddleEarthCharacter[size];
 		} else {
 			halfArray = new MiddleEarthCharacter[size];
 		}
 		
+		int counter = 0;
 		for(int i = 0; i < (index + 1); i++) {
 			if(i == removedIndex) {
 				continue;
 			}
-			halfArray[i] = characters[i];
+			halfArray[counter] = characters[i];
+			counter++;
 		}
 		characters = halfArray;
 		return true;
